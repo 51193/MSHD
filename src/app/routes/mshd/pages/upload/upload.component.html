@@ -1,1 +1,37 @@
-<p>upload works!</p>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+</head>
+<body>
+<div>
+  <div class="in-line-input">灾情码：
+    <input id="disasterId" nz-input placeholder="灾情码" nzSize="large" class="input"/>
+  </div>
+  <div class="in-line-input">省：
+    <input id="locationProvince" nz-input placeholder="灾情码" nzSize="large" class="input"/>
+  </div>
+  <div class="in-line-input">市：
+    <input nz-input placeholder="灾情码" nzSize="large" class="input"/>
+  </div>
+  <div class="in-line-input">区：
+    <input nz-input placeholder="灾情码" nzSize="large" class="input"/>
+  </div>
+  <div class="in-line-input">街道：
+    <input nz-input placeholder="灾情码" nzSize="large" />
+  </div>
+  <div class="in-line-input">居委会：
+    <input nz-input placeholder="" nzSize="large" />
+  </div>
+<div class="in-line-input">时间：
+  <nz-date-picker class="input" [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker>
+  <nz-time-picker class="input" [(ngModel)]="time" [nzDefaultOpenValue]="defaultOpenValue"></nz-time-picker>
+</div>
+  <button class="submit" nz-button nzType="primary" nzSize="large" nzShape="round" (click)="submit()">
+    上传
+  </button>
+</div>
+
+</body>
+</html>
