@@ -6,6 +6,7 @@ import { CodesComponent } from './pages/codes/codes.component';
 import { VisualizationComponent } from './pages/visualization/visualization.component';
 import { MapComponent } from './pages/map/map.component';
 import { UploadComponent } from './pages/upload/upload.component';
+import { DetailsComponent } from './pages/codes/details/details.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'codes',
         component: CodesComponent,
+      },
+      {
+        path: 'codes/:disasterId',
+        component: DetailsComponent,
       },
       {
         path: 'visualization',

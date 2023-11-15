@@ -22,6 +22,6 @@ import {NzTimePickerModule} from "ng-zorro-antd/time-picker";
     UploadComponent,
     MapComponent,
   ],
-  imports: [CommonModule, MshdRoutingModule, SharedModule, FormsModule, NzDatePickerModule, NzTimePickerModule],
+  imports: [CommonModule, MshdRoutingModule, SharedModule, FormsModule, NzDatePickerModule, NzTimePickerModule, FormsModule],
 })
 export class MshdModule {}

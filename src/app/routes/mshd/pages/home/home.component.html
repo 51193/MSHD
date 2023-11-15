@@ -1,1 +1,59 @@
-{{ infos[0].id }}
+<!-- home.component.html -->
+
+<div class="dashboard-container">
+
+  <div class="dashboard-container">
+    <nz-row nzGutter="0">
+      <nz-col nzSpan="6">
+        <nz-card>
+          <p class="title">用户数目</p>
+          <p class="value">{{ userCount }}</p>
+        </nz-card>
+      </nz-col>
+
+      <nz-col nzSpan="6">
+        <nz-card>
+          <p class="title">灾情码数目</p>
+          <p class="value">{{ disasterCodeCount }}</p>
+        </nz-card>
+      </nz-col>
+
+      <nz-col nzSpan="6">
+        <nz-card>
+          <p class="title">灾情数目</p>
+          <p class="value">{{ disasterCount }}</p>
+        </nz-card>
+      </nz-col>
+
+      <nz-col nzSpan="6">
+        <nz-card>
+          <p class="title">文件数目</p>
+          <p class="value">{{ fileCount }}</p>
+        </nz-card>
+      </nz-col>
+    </nz-row>
+
+  </div>
+
+  <nz-card>
+    <p class="title">按年份统计灾情数量</p>
+  </nz-card>
+
+  <nz-card>
+    <div id="container"></div>
+  </nz-card>
+
+
+  <nz-card>
+    <p class="title">最近五条灾情记录</p>
+    <ul nz-list>
+      <li *ngFor="let record of recentDisasterRecords" nz-list-item>
+        <nz-list-item-meta
+          [nzTitle]="record.disasterCode"
+          [nzDescription]="record.location + ' | ' + record.time + ' | ' + record.source"
+        ></nz-list-item-meta>
+        <div>{{ record.information }}</div>
+      </li>
+    </ul>
+  </nz-card>
+</div>

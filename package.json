@@ -23,6 +23,8 @@
     "@antv/g2plot": "^2.4.31",
     "@antv/l7": "^2.19.11",
     "@antv/l7-maps": "^2.19.11",
+    "bootstrap": "^5.3.2",
+    "chart.js": "^4.4.0",
     "ng-zorro-antd": "15.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
