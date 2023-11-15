@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="box1">
+      <img src="../assets/crepusculumx.svg" height="100" width="350" />
+      <div class="box">
+        <nz-input-group [nzPrefix]="prefixTemplateUser" nzSize="large">
+          <input type="text" nz-input placeholder="用户名" id="username" />
+        </nz-input-group>
+        <ng-template #prefixTemplateUser
+          ><span nz-icon nzType="user"></span
+        ></ng-template>
+        <nz-input-group
+          [nzPrefix]="prefixTemplateKey"
+          [nzSuffix]="suffixTemplate"
+          nzSize="large"
+        >
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            nz-input
+            placeholder="密码"
+            [(ngModel)]="password"
+            id="password"
+          />
+        </nz-input-group>
+        <ng-template #prefixTemplateKey
+          ><span nz-icon nzType="key"></span
+        ></ng-template>
+        <ng-template #suffixTemplate>
+          <span
+            nz-icon
+            [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+            (click)="passwordVisible = !passwordVisible"
+          ></span>
+        </ng-template>
+
+        <div class="btn-box">
+          <button
+            (click)="login()"
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            nzShape="round"
+          >
+            登录
+          </button>
+          <button
+            (click)="goRegister()"
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            nzShape="round"
+          >
+            注册
+          </button>
+          <a
+            (click)="goForget()"
+            routerLinkActive="active"
+            nz-button
+            nzType="link"
+            >忘记密码</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

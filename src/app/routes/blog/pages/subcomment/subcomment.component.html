@@ -1,0 +1,68 @@
+<!--<app-homepage></app-homepage>-->
+
+<!--<h1 id="homepage">-->
+<!--  <a (click)="navigateTo('/blog/comment')">Question and Answer</a> > Answer-->
+<!--</h1>-->
+<nz-space nzDirection="vertical" style="width: 100%">
+  <nz-page-header
+    nzBackIcon
+    *nzSpaceItem
+    (nzBack)="this.router.navigate(['blog', 'comment'])"
+    class="site-page-header"
+    nzTitle="Question and Answer >
+  {{ (comments$ | async)?.question }}"
+    [nzGhost]="false"
+  >
+  </nz-page-header>
+
+  <!--<h2>{{ comment?.question }}</h2>-->
+
+  <!--<div *nzSpaceItem>-->
+  <!--  <div *ngFor="let comment of comments">-->
+  <!--    <nz-card>-->
+  <!--      <span class="question">{{ comment.question }}</span>-->
+  <!--      <a [routerLink]="['/blog/subcomment', comment.id]">点击查看</a>-->
+  <!--    </nz-card>-->
+  <!--  </div>-->
+  <!--</div>-->
+  <div *nzSpaceItem>
+    <div
+      class="answer-section"
+      *ngFor="let answer of (comments$ | async)?.comments"
+    >
+      <ng-container *ngIf="answer !== ''">
+        <div class="comment-section">
+          <nz-card>
+            {{ answer }}
+          </nz-card>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <!--<textarea-->
+  <!--  class="text-input"-->
+  <!--  [(ngModel)]="multiLineText"-->
+  <!--  rows="4"-->
+  <!--  cols="50"-->
+  <!--  placeholder="在这里输入你的回答"-->
+  <!--&gt;</textarea>-->
+  <!--<button class="button" (click)="saveData()">发送</button>-->
+
+  <textarea
+    *nzSpaceItem
+    rows="4"
+    nz-input
+    [(ngModel)]="multiLineText"
+  ></textarea>
+  <button
+    *nzSpaceItem
+    class="button"
+    (click)="saveData()"
+    nz-button
+    nzType="primary"
+    nzSize="large"
+    nzShape="round"
+  >
+    发送
+  </button>
+</nz-space>

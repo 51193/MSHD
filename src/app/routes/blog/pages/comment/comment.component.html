@@ -1,0 +1,52 @@
+<!--<app-homepage></app-homepage>-->
+
+<nz-space nzDirection="vertical" style="width: 100%">
+  <nz-page-header
+    *nzSpaceItem
+    class="site-page-header"
+    nzTitle="Question and Answer"
+    [nzGhost]="false"
+  ></nz-page-header>
+
+  <!--<div class="search-container">-->
+  <!--  <input type="text" id="search-input" placeholder="输入搜索关键字">-->
+  <!--  <button id="search-button">搜索</button>-->
+  <!--</div>-->
+  <div style="clear: both"></div>
+
+  <div *nzSpaceItem>
+    <div *ngFor="let comment of comments$ | async">
+      <nz-card>
+        <span class="question">{{ comment.question }}</span>
+        <a [routerLink]="['/blog/subcomment', comment.id]">点击查看</a>
+      </nz-card>
+    </div>
+  </div>
+
+  <!--<textarea-->
+  <!--  class="text-input"-->
+  <!--  [(ngModel)]="multiLineText"-->
+  <!--  rows="4"-->
+  <!--  cols="50"-->
+  <!--  placeholder="在这里输入你的回答"-->
+  <!--&gt;</textarea>-->
+  <!--<button class="button" (click)="addQuestion()">发送</button>-->
+
+  <textarea
+    *nzSpaceItem
+    rows="4"
+    nz-input
+    [(ngModel)]="multiLineText"
+  ></textarea>
+  <button
+    *nzSpaceItem
+    class="button"
+    (click)="addQuestion()"
+    nz-button
+    nzType="primary"
+    nzSize="large"
+    nzShape="round"
+  >
+    发送
+  </button>
+</nz-space>

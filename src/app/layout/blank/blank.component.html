@@ -1,0 +1,11 @@
+<nz-affix style="position: absolute; top: 20px; left: 20px; z-index: 999">
+  <button
+    nz-button
+    nzType="primary"
+    nzShape="circle"
+    (click)="layoutService.quitBlank()"
+  >
+    <span nz-icon nzType="fullscreen-exit" nzTheme="outline"></span>
+  </button>
+</nz-affix>
+<router-outlet></router-outlet>
