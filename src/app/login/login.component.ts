@@ -37,7 +37,7 @@ export class LoginComponent {
     const res = this.authService.login(this.username, this.password);
     if (res == '1') {
       this.createMessageSuccess();
-      this.router.navigate(['blog']);
+      this.router.navigate(['mshd']);
     } else {
       this.createMessageError();
     }

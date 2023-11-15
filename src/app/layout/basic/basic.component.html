@@ -55,39 +55,39 @@
             nzTheme="outline"
           ></span>
         </span>
-        <span class="header-trigger" (click)="navigateTo('/blog/comment')">
-          <span
-            nz-tooltip
-            nzTooltipTitle="问答区"
-            nzTooltipPlacement="bottom"
-            nzTooltipColor="blue"
-            nz-icon
-            nzType="comment"
-            nzTheme="outline"
-          ></span>
-        </span>
-        <span class="header-trigger" (click)="authService.logout()">
-          <span
-            nz-tooltip
-            nzTooltipTitle="登出"
-            nzTooltipPlacement="bottom"
-            nzTooltipColor="blue"
-            nz-icon
-            nzType="export"
-            nzTheme="outline"
-          ></span>
-        </span>
-        <nz-upload
-          nzAction="blog/upload"
-          nzDirectory
-          [nzShowUploadList]="false"
-          (nzChange)="handleChange($event)"
-        >
-          <button nz-button>
-            <span nz-icon nzType="upload"></span>
-            Upload Directory
-          </button>
-        </nz-upload>
+        <!--        <span class="header-trigger" (click)="navigateTo('/blog/comment')">-->
+        <!--          <span-->
+        <!--            nz-tooltip-->
+        <!--            nzTooltipTitle="问答区"-->
+        <!--            nzTooltipPlacement="bottom"-->
+        <!--            nzTooltipColor="blue"-->
+        <!--            nz-icon-->
+        <!--            nzType="comment"-->
+        <!--            nzTheme="outline"-->
+        <!--          ></span>-->
+        <!--        </span>-->
+        <!--        <span class="header-trigger" (click)="authService.logout()">-->
+        <!--          <span-->
+        <!--            nz-tooltip-->
+        <!--            nzTooltipTitle="登出"-->
+        <!--            nzTooltipPlacement="bottom"-->
+        <!--            nzTooltipColor="blue"-->
+        <!--            nz-icon-->
+        <!--            nzType="export"-->
+        <!--            nzTheme="outline"-->
+        <!--          ></span>-->
+        <!--        </span>-->
+        <!--        <nz-upload-->
+        <!--          nzAction="blog/upload"-->
+        <!--          nzDirectory-->
+        <!--          [nzShowUploadList]="false"-->
+        <!--          (nzChange)="handleChange($event)"-->
+        <!--        >-->
+        <!--          <button nz-button>-->
+        <!--            <span nz-icon nzType="upload"></span>-->
+        <!--            Upload Directory-->
+        <!--          </button>-->
+        <!--        </nz-upload>-->
       </div>
     </nz-header>
     <nz-content>

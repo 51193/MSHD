@@ -11,5 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class MshdService {
   constructor() {}
 
-  DisasterCodeInfos$ = new BehaviorSubject<DisasterCodeInfos>([]);
+  DisasterCodeInfos$ = new BehaviorSubject<DisasterCodeInfos>(<
+    DisasterCodeInfo[]
+  >[{ id: 1 }]);
 }
