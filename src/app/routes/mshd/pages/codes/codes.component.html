@@ -1,1 +1,26 @@
-git
+<nz-table #basicTable [nzData]="infos">
+    <thead>
+      <tr>
+        <th>灾情码</th>
+        <th>位置</th>
+        <th>时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.disasterId}}</td>
+        <td>{{data.locationProvince + "-" + 
+            data.locationCity + "-" +
+            data.locationCounty + "-" +
+            data.locationTown + "-" +
+            data.locationVillage}}</td>
+        <td>{{data.uploadTime}}</td>
+        <td>
+          <a>灾情码详情</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a>灾情详情</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
