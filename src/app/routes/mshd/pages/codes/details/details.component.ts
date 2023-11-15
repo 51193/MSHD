@@ -22,8 +22,6 @@ export class DetailsComponent {
       if(y != null){
         this.id = y;
       }
-        console.log(this.id);
-        console.log(param);
     })
     this.getUser();
     this.mshdService.DisasterCodeInfos$.subscribe((infos) => {
