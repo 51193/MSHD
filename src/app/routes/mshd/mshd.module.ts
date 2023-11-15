@@ -9,6 +9,9 @@ import { CodesComponent } from './pages/codes/codes.component';
 import { UploadComponent } from './pages/upload/upload.component';
 import { MapComponent } from './pages/map/map.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import {FormsModule} from "@angular/forms";
+import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
+import {NzTimePickerModule} from "ng-zorro-antd/time-picker";
 
 @NgModule({
   declarations: [
@@ -19,6 +22,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     UploadComponent,
     MapComponent,
   ],
-  imports: [CommonModule, MshdRoutingModule, SharedModule],
+  imports: [CommonModule, MshdRoutingModule, SharedModule, FormsModule, NzDatePickerModule, NzTimePickerModule],
 })
 export class MshdModule {}
