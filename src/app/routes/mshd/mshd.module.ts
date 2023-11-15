@@ -8,6 +8,7 @@ import { VisualizationComponent } from './pages/visualization/visualization.comp
 import { CodesComponent } from './pages/codes/codes.component';
 import { UploadComponent } from './pages/upload/upload.component';
 import { MapComponent } from './pages/map/map.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { MapComponent } from './pages/map/map.component';
     UploadComponent,
     MapComponent,
   ],
-  imports: [CommonModule, MshdRoutingModule],
+  imports: [CommonModule, MshdRoutingModule, SharedModule],
 })
 export class MshdModule {}
