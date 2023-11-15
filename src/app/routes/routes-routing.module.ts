@@ -7,9 +7,14 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
+  // {
+  //   path: 'blog',
+  //   loadChildren: () => import('./blog/blog.module').then((m) => m.BlogModule),
+  //   canActivate: [],
+  // },
   {
-    path: 'blog',
-    loadChildren: () => import('./blog/blog.module').then((m) => m.BlogModule),
+    path: 'mshd',
+    loadChildren: () => import('./mshd/mshd.module').then((m) => m.MshdModule),
     canActivate: [],
   },
   {
