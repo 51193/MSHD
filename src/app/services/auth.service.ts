@@ -6,6 +6,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor(public http: HttpClient, public router: Router) {
@@ -22,6 +23,7 @@ export class AuthService {
         this.login_state = response.toString();
       });
   }
+
 
   public login_state = '3';
   login(username: string | undefined, password: string | undefined): string {

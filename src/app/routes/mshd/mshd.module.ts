@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
+import { CustomFormComponent } from 'src/app/shared/components/custom-form/custom-form.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
     NzTimePickerModule,
     FormsModule,
     ReactiveFormsModule,
+    CustomFormComponent,
   ],
 })
 export class MshdModule {}

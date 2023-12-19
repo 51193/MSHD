@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -10,23 +11,20 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   providers: [{ provide: NzMessageService }],
 })
 export class LoginComponent {
-  value: any;
   passwordVisible = false;
-  password: string | undefined;
+  password: string | null = null;
   username = 'yyx';
+  uid: string | null = null;
   error = false;
   constructor(
     public router: Router,
     private authService: AuthService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private userService: UserService
   ) {}
-  createMessageSuccess(): void {
-    this.message.create('success', `登陆成功`);
-  }
-  createMessageError(): void {
-    this.message.create('error', `用户名或密码错误`);
-  }
+
   login() {
+    this.uid = (document.getElementById('username') as HTMLInputElement).value;
     this.username = (
       document.getElementById('username') as HTMLInputElement
     ).value;
@@ -34,30 +32,14 @@ export class LoginComponent {
       document.getElementById('password') as HTMLInputElement
     ).value;
 
-    const res = this.authService.login(this.username, this.password);
-    if (res == '1') {
-      this.createMessageSuccess();
-      this.router.navigate(['mshd']);
-    } else {
-      this.createMessageError();
-    }
-    // if (localStorage.getItem('currentUser') == null) {
-    //   this.createMessageError();
-    //   this.error = true;
-    // } else {
-    //   this.createMessageSuccess();
-    //   this.router.navigate(['/blog']);
-    // }
-  }
-
-  goRegister() {
-    this.router.navigate(['/register']);
-  }
-
-  goForget() {
-    this.router.navigate(['/forget']);
-  }
-  goBlog() {
-    this.router.navigate(['/blog']);
+    // const res = this.authService.login(this.username, this.password);
+    this.userService.login$(this.uid, this.password).subscribe((res) => {
+      if (res == true) {
+        this.message.create('success', `登陆成功`);
+        this.router.navigate(['mshd']);
+      } else {
+        this.message.create('error', `用户名或密码错误`);
+      }
+    });
   }
 }

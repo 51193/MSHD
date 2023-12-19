@@ -1,176 +1,92 @@
-import { Component } from '@angular/core';
-import {
-  AbstractControl,
-  AsyncValidatorFn,
-  FormControl,
-  FormGroup,
-  NonNullableFormBuilder,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
-import { Observable, Observer } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ReplaySubject, of } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
+import {
+  CustomFormData,
+  CustomFormItemInfos,
+} from 'src/app/shared/components/custom-form/interfaces/custom-form';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.less'],
 })
-export class UserInfoComponent {
-  validateForm: FormGroup<{
-    userName: FormControl<string>;
-    mobile: FormControl<string>;
-    email: FormControl<string>;
-    password: FormControl<string>;
-    confirm: FormControl<string>;
-  }>;
+export class UserInfoComponent implements OnInit {
+  constructor(
+    private message: NzMessageService,
+    private userService: UserService
+  ) {}
 
-  captchaTooltipIcon: NzFormTooltipIcon = {
-    type: 'info-circle',
-    theme: 'twotone',
-  };
-  // current locale is key of the nzAutoTips
-  // if it is not found, it will be searched again with `default`
-  autoTips: Record<string, Record<string, string>> = {
-    'zh-cn': {
-      required: '必填项',
+  formItemInfos: CustomFormItemInfos = [
+    {
+      key: 'uid',
+      formType: 'string',
+      title: '用户名',
+      constraint: {
+        required: true,
+        placeholder: '',
+        password: false,
+      },
     },
-    en: {
-      required: 'Input is required',
+    {
+      key: 'password',
+      formType: 'string',
+      title: '原密码',
+      constraint: {
+        required: true,
+        placeholder: '',
+        password: true,
+      },
     },
-    default: {
-      email: '邮箱格式不正确/The input is not valid email',
+    {
+      key: 'newPassword',
+      formType: 'string',
+      title: '新密码',
+      constraint: {
+        required: true,
+        placeholder: '',
+        password: true,
+      },
     },
-  };
+    {
+      key: 'confirmPassword',
+      formType: 'string',
+      title: '确认密码',
+      constraint: {
+        required: true,
+        placeholder: '',
+        password: true,
+      },
+    },
+  ];
 
-  submitForm(): void {
-    if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
-    } else {
-      Object.values(this.validateForm.controls).forEach((control) => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
-    }
-  }
+  formData$ = new ReplaySubject<CustomFormData>();
 
-  validateConfirmPassword(): void {
-    setTimeout(() =>
-      this.validateForm.controls.confirm.updateValueAndValidity()
-    );
-  }
+  ngOnInit(): void {
+    this.formData$.subscribe((res) => {
+      const uid = res[0].value as string;
+      const password = res[1].value as string;
+      const newPassword = res[2].value as string;
+      const confirmPassword = res[3].value as string;
 
-  userNameAsyncValidator: AsyncValidatorFn = (control: AbstractControl) =>
-    new Observable((observer: Observer<MyValidationErrors | null>) => {
-      setTimeout(() => {
-        if (control.value === 'JasonWood') {
-          observer.next({
-            duplicated: {
-              'zh-cn': `用户名已存在`,
-              en: `The username is redundant!`,
-            },
-          });
-        } else {
-          observer.next(null);
-        }
-        observer.complete();
-      }, 1000);
-    });
+      if (newPassword != confirmPassword) {
+        this.message.error('两次密码不同！');
+        return;
+      }
 
-  confirmValidator: ValidatorFn = (
-    control: AbstractControl
-  ): { [s: string]: boolean } => {
-    if (!control.value) {
-      return { error: true, required: true };
-    } else if (control.value !== this.validateForm.controls.password.value) {
-      return { confirm: true, error: true };
-    }
-    return {};
-  };
-
-  constructor(private fb: NonNullableFormBuilder) {
-    // use `MyValidators`
-    const { required, maxLength, minLength, email, mobile } = MyValidators;
-    this.validateForm = this.fb.group({
-      userName: [
-        '',
-        [required, maxLength(12), minLength(6)],
-        [this.userNameAsyncValidator],
-      ],
-      mobile: ['', [required, mobile]],
-      email: ['', [required, email]],
-      password: ['', [required]],
-      confirm: ['', [this.confirmValidator]],
+      this.userService
+        .changePassword$(uid, password, newPassword)
+        .subscribe((res) => {
+          if (res === true) {
+            this.message.success('修改成功！');
+          } else {
+            this.message.error('原密码错误！');
+          }
+        });
     });
   }
-
-  getCaptcha(e: MouseEvent): void {
-    e.preventDefault();
-  }
-}
-
-// current locale is key of the MyErrorsOptions
-export type MyErrorsOptions = { 'zh-cn': string; en: string } & Record<
-  string,
-  NzSafeAny
->;
-export type MyValidationErrors = Record<string, MyErrorsOptions>;
-
-export class MyValidators extends Validators {
-  static override minLength(minLength: number): ValidatorFn {
-    return (control: AbstractControl): MyValidationErrors | null => {
-      if (Validators.minLength(minLength)(control) === null) {
-        return null;
-      }
-      return {
-        minlength: {
-          'zh-cn': `最小长度为 ${minLength}`,
-          en: `MinLength is ${minLength}`,
-        },
-      };
-    };
-  }
-
-  static override maxLength(maxLength: number): ValidatorFn {
-    return (control: AbstractControl): MyValidationErrors | null => {
-      if (Validators.maxLength(maxLength)(control) === null) {
-        return null;
-      }
-      return {
-        maxlength: {
-          'zh-cn': `最大长度为 ${maxLength}`,
-          en: `MaxLength is ${maxLength}`,
-        },
-      };
-    };
-  }
-
-  static mobile(control: AbstractControl): MyValidationErrors | null {
-    const value = control.value;
-
-    if (isEmptyInputValue(value)) {
-      return null;
-    }
-
-    return isMobile(value)
-      ? null
-      : {
-          mobile: {
-            'zh-cn': `手机号码格式不正确`,
-            en: `Mobile phone number is not valid`,
-          },
-        };
-  }
-}
-
-function isEmptyInputValue(value: NzSafeAny): boolean {
-  return value == null || value.length === 0;
-}
-
-function isMobile(value: string): boolean {
-  return typeof value === 'string' && /(^1\d{10}$)/.test(value);
 }
