@@ -1,0 +1,74 @@
+<nz-card class="your-card" [nzBordered]="false">
+  <h1 nz-typography>修改密码</h1>
+  <nz-divider></nz-divider>
+  <form
+    nz-form
+    [nzAutoTips]="autoTips"
+    [formGroup]="validateForm"
+    (ngSubmit)="submitForm()"
+  >
+    <form
+      nz-form
+      [nzAutoTips]="autoTips"
+      [formGroup]="validateForm"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>原密码</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzValidatingTip="Validating...">
+          <input
+            nz-input
+            type="password"
+            formControlName="oldpassword"
+            placeholder="请输入原密码"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>新密码</nz-form-label>
+        <nz-form-control
+          [nzSpan]="12"
+          nzDisableAutoTips
+          nzErrorTip="请输入新密码"
+        >
+          <input
+            nz-input
+            type="password"
+            formControlName="password"
+            placeholder="请确认新密码"
+            (ngModelChange)="validateConfirmPassword()"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>确认新密码</nz-form-label>
+        <nz-form-control
+          [nzSpan]="12"
+          nzDisableAutoTips
+          [nzErrorTip]="passwordErrorTpl"
+        >
+          <input
+            nz-input
+            type="password"
+            formControlName="confirm"
+            placeholder="请确认新密码"
+          />
+          <ng-template #passwordErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')"
+              >请确认新密码!</ng-container
+            >
+            <ng-container *ngIf="control.hasError('confirm')"
+              >输入不一致!</ng-container
+            >
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzOffset]="7" [nzSpan]="12">
+          <button nz-button nzType="primary">Submit</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </form></nz-card
+>

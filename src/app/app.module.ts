@@ -26,6 +26,8 @@ import { CommentComponent } from './routes/blog/pages/comment/comment.component'
 import { SubcommentComponent } from './routes/blog/pages/subcomment/subcomment.component';
 import { NZ_CONFIG, NzConfig } from 'ng-zorro-antd/core/config';
 import { SharedModule } from './shared/shared.module';
+import { DetailsComponent } from './routes/mshd/pages/codes/details/details.component';
+import { UserInfoComponent } from './src/app/routes/mshd/pages/user-info/user-info.component';
 //import { NgZorroAntdModule, NzConfig, NZ_CONFIG } from 'ng-zorro-antd';
 
 registerLocaleData(zh);
@@ -40,6 +42,8 @@ const ngZorroConfig: NzConfig = {
     ForgetComponent,
     CommentComponent,
     SubcommentComponent,
+    DetailsComponent,
+    UserInfoComponent,
   ],
   imports: [
     NotfoundModule,

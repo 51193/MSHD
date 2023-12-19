@@ -1,0 +1,11 @@
+    <nz-descriptions nzTitle="灾情码详情" nzBordered nzLayout="vertical">
+      <nz-descriptions-item nzTitle="省、直辖市、自治区：">{{x?.locationProvince}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="地级市">{{x?.locationCity}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="区、县">{{x?.locationCounty}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="乡镇、街道">{{x?.locationTown}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="行政村、社区" >{{x?.locationVillage}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="上传用户">{{x?.fileUploader}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="信息来源">{{x?.sourceMain + "-" + x?.sourceSub}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="载体">{{x?.carrier}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="灾情信息">{{x?.disasterMain + "-" + x?.disasterSub + "-" + x?.disasterTarget}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="是否有文件">{{x?.haveFile}}</nz-descriptions-item>
