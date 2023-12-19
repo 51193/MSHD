@@ -25,7 +25,7 @@
     "@antv/l7-maps": "^2.19.11",
     "bootstrap": "^5.3.2",
     "chart.js": "^4.4.0",
-    "ng-zorro-antd": "16.2.2",
+    "ng-zorro-antd": "17.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
