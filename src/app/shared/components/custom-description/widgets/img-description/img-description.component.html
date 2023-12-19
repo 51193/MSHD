@@ -1,0 +1,11 @@
+<nz-descriptions nzTitle="" nzLayout="vertical">
+  <nz-descriptions-item [nzTitle]="description.title">
+    <div class="img-description-list">
+      @for (value of description.value; track $index) {
+        <div class="img-description-item">
+          <lib-http-img [url]="value.src"></lib-http-img>
+        </div>
+      }
+    </div>
+  </nz-descriptions-item>
+</nz-descriptions>
