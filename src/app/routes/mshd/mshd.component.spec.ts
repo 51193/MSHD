@@ -8,9 +8,8 @@ describe('MshdComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MshdComponent ]
-    })
-    .compileComponents();
+      declarations: [MshdComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MshdComponent);
     component = fixture.componentInstance;

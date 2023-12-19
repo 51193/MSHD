@@ -26,4 +26,3 @@ export interface DisasterCodeInfo {
 }
 
 export type DisasterCodeInfos = DisasterCodeInfo[];
-

@@ -81,5 +81,5 @@ export const SHARED_ZORRO_MODULES = [
   NzAffixModule,
   NzPageHeaderModule,
   NzCascaderModule,
-  NzDescriptionsModule
+  NzDescriptionsModule,
 ];

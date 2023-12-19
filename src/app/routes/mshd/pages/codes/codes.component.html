@@ -1,33 +1,41 @@
 <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-    <input type="text" nz-input placeholder="请输入灾情码" [(ngModel)]="inputs"/>
-  </nz-input-group>
-  <ng-template #suffixButton>
-    <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
-  </ng-template>
+  <input type="text" nz-input placeholder="请输入灾情码" [(ngModel)]="inputs" />
+</nz-input-group>
+<ng-template #suffixButton>
+  <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
+</ng-template>
 
 <nz-table #basicTable [nzData]="infos">
-    <thead>
-      <tr>
-        <th>灾情码</th>
-        <th>位置</th>
-        <th>时间</th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of basicTable.data">
-        <td>{{data.disasterId}}</td>
-        <td>{{data.locationProvince + "-" + 
-            data.locationCity + "-" +
-            data.locationCounty + "-" +
-            data.locationTown + "-" +
-            data.locationVillage}}</td>
-        <td>{{data.uploadTime}}</td>
-        <td>
-          <a (click)="click(data.disasterId)">灾情码详情</a>
-          <nz-divider nzType="vertical"></nz-divider>
-          <a>灾情详情</a>
-        </td>
-      </tr>
-    </tbody>
-  </nz-table>
+  <thead>
+    <tr>
+      <th>灾情码</th>
+      <th>位置</th>
+      <th>时间</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.disasterId }}</td>
+      <td>
+        {{
+          data.locationProvince +
+            "-" +
+            data.locationCity +
+            "-" +
+            data.locationCounty +
+            "-" +
+            data.locationTown +
+            "-" +
+            data.locationVillage
+        }}
+      </td>
+      <td>{{ data.uploadTime }}</td>
+      <td>
+        <a (click)="click(data.disasterId)">灾情码详情</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a>灾情详情</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

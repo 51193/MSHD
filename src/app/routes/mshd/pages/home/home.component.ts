@@ -1,7 +1,7 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {MshdService} from '../../services/mshd.service';
-import {DisasterCodeInfos} from '../../interfaces/mshd.interface';
-import {Line} from '@antv/g2plot';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { MshdService } from '../../services/mshd.service';
+import { DisasterCodeInfos } from '../../interfaces/mshd.interface';
+import { Line } from '@antv/g2plot';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,6 @@ import {Line} from '@antv/g2plot';
 })
 
 // home.component.ts
-
 export class HomeComponent implements OnInit, AfterViewInit {
   public infos: DisasterCodeInfos = [];
 
@@ -33,7 +32,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       time: '2023-11-09 16:00:00',
       source: '业务报送数据-前方地震应急指挥部',
       carrier: '图像',
-      information: '震情-震情信息-地理位置'
+      information: '震情-震情信息-地理位置',
     },
     {
       disasterCode: '110101001005202311080000001000101001',
@@ -41,7 +40,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       time: '2023-11-07 16:00:00',
       source: '业务报送数据-前方地震应急指挥部',
       carrier: '文字',
-      information: '震情-震情信息-地理位置'
+      information: '震情-震情信息-地理位置',
     },
     {
       disasterCode: '141124111201202311071908041000101001',
@@ -49,7 +48,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       time: '2023-11-07 11:08:04',
       source: '业务报送数据-前方地震应急指挥部',
       carrier: '文字',
-      information: '震情-震情信息-地理位置'
+      information: '震情-震情信息-地理位置',
     },
     {
       disasterCode: '653001206000202304011353081000101003',
@@ -57,7 +56,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       time: '2023-04-01 05:53:08',
       source: '业务报送数据-前方地震应急指挥部',
       carrier: '文字',
-      information: '震情-震情信息-震级'
+      information: '震情-震情信息-震级',
     },
     {
       disasterCode: '653001206000202304011353081000101004',
@@ -65,38 +64,44 @@ export class HomeComponent implements OnInit, AfterViewInit {
       time: '2023-04-01 05:53:08',
       source: '业务报送数据-前方地震应急指挥部',
       carrier: '文字',
-      information: '震情-震情信息-深度'
+      information: '震情-震情信息-深度',
     },
     // ...
   ];
 
   yearlyStats: any[] = [
-    {year: 2020, count: 15},
-    {year: 2021, count: 25},
-    {year: 2022, count: 10},
+    { year: 2020, count: 15 },
+    { year: 2021, count: 25 },
+    { year: 2022, count: 10 },
     // Add more data for other years as needed
   ];
 
   // 折线图数据
-  lineChartData: any[] = [{data: this.yearlyStats.map(stat => stat.count), label: '灾情数量'}];
-  lineChartLabels: any[] = this.yearlyStats.map(stat => stat.year.toString());
+  lineChartData: any[] = [
+    { data: this.yearlyStats.map((stat) => stat.count), label: '灾情数量' },
+  ];
+  lineChartLabels: any[] = this.yearlyStats.map((stat) => stat.year.toString());
   lineChartType: string = 'line';
   lineChartOptions: any = {
     responsive: true,
     scales: {
-      xAxes: [{
-        scaleLabel: {
-          display: true,
-          labelString: '年份'
-        }
-      }],
-      yAxes: [{
-        scaleLabel: {
-          display: true,
-          labelString: '数量'
-        }
-      }]
-    }
+      xAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: '年份',
+          },
+        },
+      ],
+      yAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: '数量',
+          },
+        },
+      ],
+    },
   };
 
   ngOnInit(): void {
@@ -105,18 +110,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const data: any = [
-      {year: '2012', value: 900},
-      {year: '2013', value: 1500},
-      {year: '2014', value: 1350},
-      {year: '2015', value: 1200},
-      {year: '2016', value: 1100},
-      {year: '2017', value: 1000},
-      {year: '2018', value: 1100},
-      {year: '2019', value: 1200},
-      {year: '2020', value: 1150},
-      {year: '2021', value: 1400},
-      {year: '2022', value: 1400},
-      {year: '2023', value: 400},
+      { year: '2012', value: 900 },
+      { year: '2013', value: 1500 },
+      { year: '2014', value: 1350 },
+      { year: '2015', value: 1200 },
+      { year: '2016', value: 1100 },
+      { year: '2017', value: 1000 },
+      { year: '2018', value: 1100 },
+      { year: '2019', value: 1200 },
+      { year: '2020', value: 1150 },
+      { year: '2021', value: 1400 },
+      { year: '2022', value: 1400 },
+      { year: '2023', value: 400 },
     ];
 
     const line = new Line('container', {
@@ -133,7 +138,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           lineWidth: 2,
         },
       },
-      tooltip: {showMarkers: false},
+      tooltip: { showMarkers: false },
       state: {
         active: {
           style: {
@@ -143,15 +148,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
           },
         },
       },
-      interactions: [{type: 'marker-active'}],
+      interactions: [{ type: 'marker-active' }],
     });
 
     line.render();
   }
 }
-
-
-
-
-
-
