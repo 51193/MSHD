@@ -89,10 +89,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "mshd:build:production"
+              "buildTarget": "mshd:build:production"
             },
             "development": {
-              "browserTarget": "mshd:build:development"
+              "buildTarget": "mshd:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -100,7 +100,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mshd:build"
+            "buildTarget": "mshd:build"
           }
         },
         "test": {
