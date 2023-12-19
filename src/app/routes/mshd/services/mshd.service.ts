@@ -3,14 +3,18 @@ import {
   DisasterCodeInfo,
   DisasterCodeInfos,
 } from '../interfaces/mshd.interface';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root',
 })
 export class MshdService {
-  constructor() {}
-
+  constructor(public http: HttpClient) {
+    this.http.get(
+      'province',
+    )
+  }
   DisasterCodeInfos$ = new BehaviorSubject<DisasterCodeInfos>([{
     id: 10,
     disasterId: "123123123123",
