@@ -20,8 +20,9 @@ const routes: Routes = [
     component: MshdComponent,
     children: [
       {
-        path: 'home',
-        component: HomeComponent,
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'codes',
       },
       {
         path: 'codes',
