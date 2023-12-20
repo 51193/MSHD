@@ -49,6 +49,14 @@ export class MenusService {
     },
     {
       level: 1,
+      title: '管理灾情码',
+      icon: 'dashboard',
+      selected: false,
+      disabled: false,
+      routerLink: ['mshd', 'manage'],
+    },
+    {
+      level: 1,
       title: '用户信息',
       icon: 'dashboard',
       selected: false,

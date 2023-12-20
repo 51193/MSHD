@@ -8,6 +8,7 @@ import { MapComponent } from './pages/map/map.component';
 import { UploadComponent } from './pages/upload/upload.component';
 import { DetailsComponent } from './pages/codes/details/details.component';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
+import { ManageComponent } from './pages/manage/manage.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
       {
         path: 'userInfo',
         component: UserInfoComponent,
+      },
+      {
+        path: 'manage',
+        component: ManageComponent,
       },
     ],
   },

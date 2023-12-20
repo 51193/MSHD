@@ -10,88 +10,139 @@
         <nz-form-control [nzSpan]="14"> </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="email">灾情码</nz-form-label>
-        <nz-form-control nzErrorTip="123" [nzSpan]="10">
-          <input name="ID" id="disasterId" nz-input placeholder="灾情码" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="email">地理位置</nz-form-label>
+        <nz-form-label [nzSpan]="7">省份</nz-form-label>
         <nz-form-control [nzSpan]="10">
-          <input
-            name="location"
-            id="locationProvince"
-            nz-input
-            placeholder="地理位置"
-          />
+          <nz-cascader
+            nzChangeOnSelect
+            name="province"
+            [(ngModel)]="selectedProvince"
+            [nzOptions]="nzOptions_province"
+            (ngModelChange)="onProvinceChange($event)"
+          ></nz-cascader>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="email">数据来源</nz-form-label>
+        <nz-form-label [nzSpan]="7">城市</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-cascader
+            nzChangeOnSelect
+            name="city"
+            [(ngModel)]="selectedCity"
+            [nzOptions]="nzOptions_city"
+            (ngModelChange)="onCityChange($event)"
+          ></nz-cascader>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">区</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-cascader
+            nzChangeOnSelect
+            name="county"
+            [(ngModel)]="selectedCounty"
+            [nzOptions]="nzOptions_county"
+            (ngModelChange)="onCountyChange($event)"
+          ></nz-cascader>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">镇</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-cascader
+            nzChangeOnSelect
+            name="town"
+            [(ngModel)]="selectedTown"
+            [nzOptions]="nzOptions_town"
+            (ngModelChange)="onTownChange($event)"
+          ></nz-cascader>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">街道</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-cascader
+            nzChangeOnSelect
+            name="village"
+            [(ngModel)]="selectedVillage"
+            [nzOptions]="nzOptions_village"
+            (ngModelChange)="onVillageChange($event)"
+          ></nz-cascader>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">数据来源</nz-form-label>
         <nz-form-control [nzSpan]="10">
           <nz-cascader
             name="sourse"
             [nzOptions]="nzOptions_source"
-            [(ngModel)]="values_source"
-            (ngModelChange)="onChanges($event)"
+            [(ngModel)]="selectedSource"
+            (ngModelChange)="onSourseChange($event)"
           ></nz-cascader>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="email">灾情种类</nz-form-label>
+        <nz-form-label [nzSpan]="7">灾情种类</nz-form-label>
         <nz-form-control [nzSpan]="10">
           <nz-cascader
             name="disaster"
             [nzOptions]="nzOptions_disaster"
-            [(ngModel)]="values_disaster"
-            (ngModelChange)="onChanges($event)"
+            [(ngModel)]="selectedDisaster"
+            (ngModelChange)="onDisasterChange($event)"
           ></nz-cascader>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="email">载体</nz-form-label>
+        <nz-form-label [nzSpan]="7">灾害指标</nz-form-label>
+        <nz-form-control [nzSpan]="10">
+          <nz-cascader
+            name="disaster"
+            [nzOptions]="nzOptions_disaster_index"
+            [(ngModel)]="selectedDisasterIndex"
+            (ngModelChange)="onDisasterChange($event)"
+          ></nz-cascader>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">载体</nz-form-label>
         <nz-form-control [nzSpan]="10">
           <nz-cascader
             name="carrier"
             [nzOptions]="nzOptions_carrier"
-            [(ngModel)]="values_carrier"
-            (ngModelChange)="onChanges($event)"
+            [(ngModel)]="selectedCarrier"
+            (ngModelChange)="onCarrierChange($event)"
           ></nz-cascader>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="email">时间</nz-form-label>
+        <nz-form-label [nzSpan]="7">时间</nz-form-label>
         <nz-form-control [nzSpan]="14">
           <nz-date-picker
             name="date"
             [(ngModel)]="date"
-            (ngModelChange)="onChange($event)"
+            (ngModelChange)="onDateChange($event)"
           ></nz-date-picker>
           <nz-time-picker
             name="time"
             [(ngModel)]="time"
-            [nzDefaultOpenValue]="defaultOpenValue"
+            (ngModelChange)="onTimeChange($event)"
           ></nz-time-picker>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSpan]="6" nzFor="email">描述</nz-form-label>
+        <nz-form-label [nzSpan]="7">描述</nz-form-label>
         <nz-form-control [nzSpan]="10">
           <textarea
             name="description"
             rows="4"
             nz-input
-            [(ngModel)]="description"
+            [(ngModel)]="Description"
+            (ngModelChange)="onDescriptionChange($event)"
           ></textarea>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item nz-row class="register-area">
-        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+        <nz-form-control [nzSpan]="14" [nzOffset]="7">
           <button nz-button nzType="primary" (click)="submit()">上传</button>
-          <div *ngIf="responseData">
-            <h2>从后端接收的数据：</h2>
-            <pre>{{ responseData | json }}</pre>
-          </div>
         </nz-form-control>
       </nz-form-item>
     </form>
