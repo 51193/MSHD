@@ -48,6 +48,12 @@ export class MshdService {
     //       .subscribe(() => {});
     //   });
     // });
+    // this.DisasterCodeInfos$.subscribe((items) => {
+    //   items.forEach((item) => {
+    //     console.log(item.locationVillage);
+    //     this.http.get<string>('disaster_code/submit', {}).subscribe(() => {});
+    //   });
+    // });
   }
 
   DisasterCodeInfos$ = new BehaviorSubject<DisasterCodeInfos>(

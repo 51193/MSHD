@@ -685,7 +685,7 @@ export class UploadComponent implements OnInit {
           // 成功接收到数据后，将数据转换成所需的格式
           console.log(data);
         });
-        this.message.create('success', `上传成功`);
+      this.message.create('success', `上传成功`);
     }
   }
 
