@@ -63,6 +63,14 @@ export class MenusService {
       disabled: false,
       routerLink: ['mshd', 'userInfo'],
     },
+    {
+      level: 1,
+      title: '用户管理',
+      icon: 'dashboard',
+      selected: false,
+      disabled: false,
+      routerLink: ['mshd', 'user_manage'],
+    },
   ]);
   get menus$(): BehaviorSubject<Menus> {
     return this._menus$;

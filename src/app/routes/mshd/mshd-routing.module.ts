@@ -9,6 +9,7 @@ import { UploadComponent } from './pages/upload/upload.component';
 import { DetailsComponent } from './pages/codes/details/details.component';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { ManageComponent } from './pages/manage/manage.component';
+import { UserManageComponent } from './pages/user-manage/user-manage.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'manage',
         component: ManageComponent,
+      },
+      {
+        path: 'user_manage',
+        component: UserManageComponent,
       },
     ],
   },

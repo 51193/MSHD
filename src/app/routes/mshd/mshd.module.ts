@@ -14,6 +14,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { CustomFormComponent } from 'src/app/shared/components/custom-form/custom-form.component';
+import { UserManageComponent } from './pages/user-manage/user-manage.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CustomFormComponent } from 'src/app/shared/components/custom-form/custo
     UploadComponent,
     MapComponent,
     UserInfoComponent,
+    UserManageComponent,
   ],
   imports: [
     CommonModule,
