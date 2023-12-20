@@ -1,1 +1,116 @@
-<p>manage works!</p>
+<button nz-button nzType="primary" nzShape="round" (click)="redirectToLink()">
+  <span nz-icon nzType="download"></span>
+  导出数据
+</button>
+<nz-page-header
+  class="site-page-header"
+  [nzGhost]="false"
+  nzTitle="灾情信息"
+></nz-page-header>
+
+<nz-drawer
+  [nzClosable]="false"
+  [nzVisible]="visible"
+  nzPlacement="left"
+  nzTitle="灾情详情"
+  (nzOnClose)="close()"
+>
+  <ng-container *nzDrawerContent>
+    <!-- 在抽屉中显示选中的灾情数据 -->
+    <p>灾情码：{{ selectedDisasterData?.disaster_code }}</p>
+    <p>省份：{{ selectedDisasterData?.province }}</p>
+    <p>市：{{ selectedDisasterData?.city }}</p>
+    <p>区：{{ selectedDisasterData?.county }}</p>
+    <p>县：{{ selectedDisasterData?.town }}</p>
+    <p>街道：{{ selectedDisasterData?.village }}</p>
+    <p>
+      数据来源：{{ selectedDisasterData?.source_type }}/{{
+        selectedDisasterData?.source_subtype
+      }}
+    </p>
+    <p>
+      灾情种类：{{ selectedDisasterData?.disaster_type }}/{{
+        selectedDisasterData?.disaster_subtype
+      }}
+    </p>
+    <p>灾情指标：{{ selectedDisasterData?.disaster_index }}</p>
+    <p>载体：{{ selectedDisasterData?.carrier }}</p>
+    <p>
+      日期：{{ selectedDisasterData?.time?.substring(0, 4) }}年{{
+        selectedDisasterData?.time?.substring(4, 6)
+      }}月{{ selectedDisasterData?.time?.substring(6, 8) }}日
+    </p>
+    <p>
+      时间：{{ selectedDisasterData?.time?.substring(8, 10) }}时{{
+        selectedDisasterData?.time?.substring(10, 12)
+      }}分{{ selectedDisasterData?.time?.substring(12, 14) }}秒
+    </p>
+
+    <p>描述：{{ selectedDisasterData?.description }}</p>
+    <!-- 其他详细信息字段 -->
+  </ng-container>
+</nz-drawer>
+
+@if (data$ | async; as data) {
+<nz-table
+  #basicTable
+  [nzData]="data"
+  [nzFrontPagination]="false"
+  [nzTotal]="(total$ | async)!"
+  [nzLoading]="loading$ | async"
+  [nzPageIndex]="(pageIndex$ | async)!"
+  [nzPageSize]="(pageSize$ | async)!"
+  (nzPageSizeChange)="this.pageSize$.next($event)"
+  (nzPageIndexChange)="this.pageIndex$.next($event)"
+>
+  <thead>
+    <tr>
+      <th>灾情码</th>
+      <th>地理位置</th>
+      <th>时间</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.disaster_code }}</td>
+      <td>
+        {{
+          data.province +
+            "-" +
+            data.city +
+            "-" +
+            data.county +
+            "-" +
+            data.town +
+            "-" +
+            data.village
+        }}
+      </td>
+      <td>
+        {{
+          data.time.substring(0, 4) +
+            "年" +
+            data.time.substring(4, 6) +
+            "月" +
+            data.time.substring(6, 8) +
+            "日" +
+            data.time.substring(8, 10) +
+            "时" +
+            data.time.substring(10, 12) +
+            "分" +
+            data.time.substring(12, 14) +
+            "秒"
+        }}
+      </td>
+
+      <td>
+        <a (click)="openDrawer(data)">查看详情</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)="delete(data)">删除</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+}
