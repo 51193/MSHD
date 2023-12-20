@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            height: 100vh;
+            width: 100vh;
+            overflow:hidden;
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    </style>
+    <script src = 'https://unpkg.com/@antv/l7'></script>
+
+</head>
+
+<body>
+
+  <div style="min-height: 100vh; width: 100vw; justify-content: center;position: relative" id="map"/>
+
+
+  <script>
+
+    const scene = new L7.Scene({
+      id: 'map',
+      map: new L7.GaodeMap({
+        style: 'dark',
+        pitch: 50,
+        center: [110.770672, 34.159869],
+        token: '380db14b0bedc8fc74eff4c45a1a5469',
+        zoom: 4
+      }),
+    });
+
+
+    scene.on('loaded', () => {
+  fetch(
+    'http://10.129.71.8:5000/disaster_code/map'
+  )
+    .then(res => res.json())
+    .then(data => {
+      const layer = new L7.PolygonLayer({})
+        .source(data)
+        .color('color')
+        .shape('extrude')
+        .size('disaster_count', (size)=>{
+          return size * 1000;
+        })
+        .active(true);
+
+      const layer2 = new L7.LineLayer({
+        zIndex: 2
+      })
+        .source(data)
+        .color('#fff')
+        .size(0.8);
+
+        const texts = [];
+
+        data.features.map(option => {
+          let  name= option.properties.name;
+
+          if(option.properties.disaster_count != undefined){
+              name = name + '： ' +  option.properties.disaster_count.toString();
+          }
+          let center = option.properties.center;
+          if(center === undefined){
+            center = [0, 0];
+          }
+          // console.log(center);
+          const [ lng, lat ] = center;
+          texts.push({ name , lng, lat });
+          return '';
+        });
+
+        textLayer = new L7.PointLayer({ zIndex: 2 })
+          .source(texts, {
+            parser: {
+              type: 'json',
+              x: 'lng',
+              y: 'lat'
+            }
+          })
+          .shape('name', 'text')
+          .size(14)
+          .color('#0ff')
+          .style({
+            textAnchor: 'center', // 文本相对锚点的位置 center|left|right|top|bottom|top-left
+            spacing: 2, // 字符间距
+            padding: [ 1, 1 ], // 文本包围盒 padding [水平，垂直]，影响碰撞检测结果，避免相邻文本靠的太近
+            stroke: '#0ff', // 描边颜色
+            strokeWidth: 0.2, // 描边宽度
+            raisingHeight: 200000 + 150000 + 10000,
+            textAllowOverlap: true
+          });
+        scene.addLayer(textLayer);
+
+
+      scene.addLayer(layer);
+      scene.addLayer(layer2);
+    });
+});
+
+  </script>
+
+</body>
+
+</html>

@@ -7,11 +7,10 @@
       [nzDisabled]="menu.disabled"
       [nzSelected]="menu.selected"
       nzMatchRouter
+      [routerLink]="menu.routerLink"
     >
       <span nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></span>
-      <span class="menu-title" [routerLink]="menu.routerLink">{{
-        menu.title
-      }}</span>
+      <span class="menu-title">{{ menu.title }}</span>
     </li>
     <li
       *ngIf="menu.children"

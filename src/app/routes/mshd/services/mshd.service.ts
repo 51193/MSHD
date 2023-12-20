@@ -4,12 +4,51 @@ import {
   DisasterCodeInfos,
 } from '../interfaces/mshd.interface';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MshdService {
-  constructor() {}
+  DateChange(ts: string): string[] {
+    const result = new Date(ts);
+
+    const year = result.getFullYear();
+    const month = (result.getUTCMonth() + 1).toString().padStart(2, '0');
+    const day = result.getUTCDate().toString().padStart(2, '0');
+    const hour = result.getHours().toString().padStart(2, '0');
+    const minute = result.getMinutes().toString().padStart(2, '0');
+    const second = result.getSeconds().toString().padStart(2, '0');
+    const selectedDate: string[] = [];
+    selectedDate[0] = `${year}${month}${day}`;
+    selectedDate[1] = `${hour}${minute}${second}`;
+    return selectedDate;
+  }
+  constructor(private http: HttpClient) {
+    // this.DisasterCodeInfos$.subscribe((items) => {
+    //   items.forEach((item) => {
+    //     console.log(item.locationVillage);
+    //     this.http
+    //       .post<string>('disaster_code/submit', {
+    //         province: item.locationProvince,
+    //         city: item.locationCity,
+    //         county: item.locationCounty,
+    //         town: item.locationTown,
+    //         village: item.locationVillage,
+    //         source_type: item.sourceMain,
+    //         source_subtype: item.sourceSub,
+    //         carrier: item.carrier,
+    //         disaster_type: item.disasterMain,
+    //         disaster_subtype: item.disasterSub,
+    //         disaster_index: item.disasterTarget,
+    //         date: this.DateChange(item.uploadTime as unknown as string).at(0),
+    //         time: this.DateChange(item.uploadTime as unknown as string).at(1),
+    //         description: item.description,
+    //       })
+    //       .subscribe(() => {});
+    //   });
+    // });
+  }
 
   DisasterCodeInfos$ = new BehaviorSubject<DisasterCodeInfos>(
     JSON.parse(

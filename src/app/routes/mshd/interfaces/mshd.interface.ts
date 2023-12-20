@@ -6,7 +6,7 @@ export interface DisasterCodeInfo {
   locationCounty: string;
   locationTown: string;
   locationVillage: string;
-  uploadTime: string;
+  uploadTime: Date;
   sourceMain: string;
   sourceSub: string;
   carrier: string;
@@ -19,7 +19,7 @@ export interface DisasterCodeInfo {
   fileUrl: string;
   fileUploader: string;
   fileTime: string;
-  createTime: string;
+  createTime: Date;
   active: number;
   longitude: number;
   latitude: number;
