@@ -36,13 +36,48 @@ export class UserService {
       );
   }
 
-  changePassword$(uid: string, password: string, newPassword: string) {
+  changePassword$(password: string, newPassword: string) {
     return this.httpClient
       .post<{ result: boolean }>('user/update_password', {
+        uid: this.curUid$.value,
+        //uid: uid,
+        password: password,
+        newPassword: newPassword,
+      })
+      .pipe(
+        map((res) => {
+          return res.result;
+        })
+      );
+  }
+  deleteUser$(uid: string, password: string, deleteUser: string) {
+    return this.httpClient
+      .post<{ result: boolean }>('user/delete_user', {
         //uid: this.curUid$.value,
         uid: uid,
         password: password,
-        newPassword: newPassword,
+        deleteUser: deleteUser,
+      })
+      .pipe(
+        map((res) => {
+          return res.result;
+        })
+      );
+  }
+
+  addUser$(
+    adminId: string,
+    adminPassword: string,
+    uid: string,
+    password: string
+  ) {
+    return this.httpClient
+      .post<{ result: boolean }>('user/add_user', {
+        //uid: this.curUid$.value,
+        adminId: adminId,
+        adminPassword: adminPassword,
+        uid: uid,
+        password: password,
       })
       .pipe(
         map((res) => {

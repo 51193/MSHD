@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: 'mshd',
     loadChildren: () => import('./mshd/mshd.module').then((m) => m.MshdModule),
-    canActivate: [],
+    canActivate: [AuthGuard],
   },
   {
     path: '',
